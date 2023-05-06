@@ -32,7 +32,12 @@ class MainActivity : AppCompatActivity(),CategoryRVAdapter.CategoryClickInterfac
         articlesArrayList = ArrayList()
         categoryRVModalArrayList = ArrayList()
         newsRVAdapter = NewsRVAdapter(articlesArrayList, this)
-        categoryRVAdapter = CategoryRVAdapter(categoryRVModalArrayList,this,this::onCategoryClick)
+        categoryRVAdapter = CategoryRVAdapter(categoryRVModalArrayList,this,object : CategoryRVAdapter.CategoryClickInterface {
+            override fun onCategoryClick(position: Int) {
+                val categoria: String = categoryRVModalArrayList[position].category
+                getNews(categoria)
+            }
+        })
         rvNews.layoutManager = LinearLayoutManager(this)
         rvNews.adapter = newsRVAdapter
         rvCategorias.adapter = categoryRVAdapter
@@ -95,7 +100,7 @@ class MainActivity : AppCompatActivity(),CategoryRVAdapter.CategoryClickInterfac
     }
 
     override fun onCategoryClick(position: Int) {
-        val categoria: String = categoryRVModalArrayList.get(position).category
+        val categoria: String = categoryRVModalArrayList[position].category
         getNews(categoria)
     }
 }
