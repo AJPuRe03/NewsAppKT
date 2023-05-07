@@ -101,4 +101,12 @@
         android:textAllCaps="false"
         />
 
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pbCargandoRegistro"
+        android:visibility="gone"/>
+
 </RelativeLayout>
