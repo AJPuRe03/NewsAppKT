@@ -37,17 +37,19 @@
                 />
 
             <TextView
+                android:id="@+id/txvTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titulo"
-                android:id="@+id/txvTitulo"
                 android:layout_below="@id/ivNews"
-                android:textColor="@color/amarillo"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 android:padding="4dp"
-                android:layout_margin="4dp"
-                />
+                android:text="Titulo"
+                android:textColor="@color/amarillo"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txvSubDesc"
@@ -64,14 +66,17 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/txvContenido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txvContenido"
-                android:text="Contenido"
                 android:layout_below="@id/txvSubDesc"
-                android:layout_margin="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 android:padding="4dp"
-                android:textColor="@color/white"/>
+                android:text="Contenido"
+                android:textColor="@color/white" />
 
 
         </RelativeLayout>
