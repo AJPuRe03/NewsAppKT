@@ -64,11 +64,17 @@ class SignUpActivity : AppCompatActivity() {
                     pbCargando.visibility = View.GONE
                     return
                 }
+                if (contra.contains("$")){
+                    Toast.makeText(this@SignUpActivity, "Los caracteres $ no son validos", Toast.LENGTH_SHORT).show()
+                    pbCargando.visibility = View.GONE
+                    return
+                }
                 if (contra != reContra){
                     Toast.makeText(this@SignUpActivity, "Verifica que las contraseñas sean iguales", Toast.LENGTH_SHORT).show()
                     pbCargando.visibility = View.GONE
                     return
                 }
+
 
                 auth.createUserWithEmailAndPassword(email, contra)
                     .addOnCompleteListener(this@SignUpActivity) { task ->

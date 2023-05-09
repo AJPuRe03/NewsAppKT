@@ -11,15 +11,19 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 
 class LogInActivity : AppCompatActivity() {
 
     lateinit var txtEmail: EditText
     lateinit var txtContra: EditText
     lateinit var btnLogIn: Button
+    lateinit var btnLGQR: Button
     lateinit var auth: FirebaseAuth
     lateinit var pbCargando: ProgressBar
     lateinit var txvSignUpNow: TextView
@@ -32,6 +36,7 @@ class LogInActivity : AppCompatActivity() {
         auth = Firebase.auth
         pbCargando = findViewById(R.id.pbCargandoLI)
         txvSignUpNow = findViewById(R.id.txvSignUpNow)
+        btnLGQR = findViewById(R.id.btnLGQR)
 
         txvSignUpNow.setOnClickListener(object: View.OnClickListener{
             override fun onClick(view: View) {
@@ -70,5 +75,30 @@ class LogInActivity : AppCompatActivity() {
             }
 
         })
+        btnLGQR.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View) {
+                val options = ScanOptions()
+                options.setPrompt("Sube el volumen para hacer flash")
+                options.setBeepEnabled(true)
+                options.setOrientationLocked(true)
+                options.setCaptureActivity(ActCaptura::class.java)
+                barLauncher.launch(options)
+            }
+        })
+
+    }
+
+    val barLauncher = registerForActivityResult(ScanContract()) { resultado ->
+        if (resultado.contents == null) {
+            Toast.makeText(this@LogInActivity,"QR inválido",Toast.LENGTH_SHORT).show()
+            return@registerForActivityResult
+        }
+        if (!resultado.contents.contains("$")) {
+            Toast.makeText(this@LogInActivity,"QR inválido",Toast.LENGTH_SHORT).show()
+            return@registerForActivityResult
+        }
+        txtEmail.setText(resultado.contents.split("$")[0])
+        txtContra.setText(resultado.contents.split("$")[1])
+
     }
 }
