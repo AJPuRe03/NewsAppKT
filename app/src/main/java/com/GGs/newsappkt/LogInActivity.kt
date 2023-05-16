@@ -27,6 +27,7 @@ class LogInActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var pbCargando: ProgressBar
     lateinit var txvSignUpNow: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
